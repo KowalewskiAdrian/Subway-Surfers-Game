@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MyCoffeeApp.ViewModels;assembly=MyCoffeeApp"
              x:Class="MyCoffeeApp.Views.AboutPage">
+
+    <!--Compiler Binding-->
+    <ContentPage.BindingContext>
+        <viewModels:AboutPageViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+
+            <Entry
+                Text="{Binding CountDisplay}"/>
+
+            <Label 
+                Text="{Binding Title}"
+            />
+
+            <Label
+                Text="{Binding CountDisplay}"
+                FontSize="Large"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Image 
+                Source="xamarin_logo.png">
+                <!--<Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding BeBraveCommand}"
+                        CommandParameter="TheyTookTheDare!" />
+                    <DragGestureRecognizer
+                        DragStartingCommand="{Binding DragStartingCommand}" />
+                </Image.GestureRecognizers>-->
+            </Image>
+
+            <Button
+                x:Name="ButtonClick"
+                Command="{Binding IncreaseCount}"
+                Text="Click me" />
+
 
             <Picker
                 Title="MyPicker"

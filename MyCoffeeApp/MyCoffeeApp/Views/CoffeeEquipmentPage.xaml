@@ -1,51 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:MyCoffeeApp.ViewModels;assembly=MyCoffeeApp"
-             x:Class="MyCoffeeApp.Views.CoffeeEquipmentPage"
-             Background="White">
+<ContentPage 
+    x:Class="MyCoffeeApp.Views.CoffeeEquipmentPage" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MyCoffeeApp.ViewModels;assembly=MyCoffeeApp"
+    xmlns:models="clr-namespace:MyCoffeeApp.Models;assembly=MyCoffeeApp"
+    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+    x:DataType="viewModels:CoffeeEquipmentViewModel"
+    Background="White">
+
     <!--Compiler Binding-->
     <ContentPage.BindingContext>
         <viewModels:CoffeeEquipmentViewModel/>
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem></ToolbarItem>
-    </ContentPage.ToolbarItems>
+    <ListView
+        ItemTapped="ListView_OnItemTapped"
+        ItemSelected="ListView_OnItemSelected"
+        CachingStrategy="RecycleElement"
+        BackgroundColor="Transparent"
+        ItemsSource="{Binding CoffeeGroups}"
+        IsGroupingEnabled="True"
+        GroupDisplayBinding="{Binding Key}"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        RefreshCommand="{Binding RefreshCommand}"
+        RefreshControlColor="Brown"
+        HasUnevenRows="True"
+        SeparatorVisibility="None">
 
-    <ContentPage.Content>
-        <StackLayout>
-            
-            <Switch 
-                OnColor="Green"
-                Toggled="Switch_OnToggled"
-                IsToggled="false" />
-            
-            <Entry
-                Text="{Binding CountDisplay}"/>
-            
-            <Label
-                Text="{Binding CountDisplay}"
-                FontSize="Large"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
-            <Image 
-                Source="xamarin_logo.png">
-                <!--<Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Command="{Binding BeBraveCommand}"
-                        CommandParameter="TheyTookTheDare!" />
-                    <DragGestureRecognizer
-                        DragStartingCommand="{Binding DragStartingCommand}" />
-                </Image.GestureRecognizers>-->
-            </Image>
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Coffee">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem 
+                            Text="Favorite"
+                            Clicked="FavoriteItem_OnClicked"/>
+                        <MenuItem Text="Delete" IsDestructive="True"/>
+                    </ViewCell.ContextActions>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20"
+                               HasShadow="True"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Image 
+                                    Source="{Binding Image}"
+                                    WidthRequest="66"/>
 
-            <Button
-                x:Name="ButtonClick"
-                Command="{Binding IncreaseCount}"
-                Text="Click me" />
+                            <StackLayout>
+                                <Label
+                                    Text="{Binding Name}"
+                                    VerticalOptions="Center"
+                                    FontSize="Large"/>
+                                <Label
+                                    Text="{Binding Roaster}"
+                                    VerticalOptions="Center"
+                                    FontSize="Large"/>
+                            </StackLayout>
+                        </StackLayout>
 
-        </StackLayout>
-    </ContentPage.Content>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Header>
+            <StackLayout Orientation="Horizontal">
+                <Label 
+                    Text="Coffees of the World"/>
+            </StackLayout>
+        </ListView.Header>
+
+        <ListView.Footer>
+            <StackLayout Orientation="Horizontal">
+                <Label 
+                    Text="daltonlima.com"/>
+                <Button 
+                    Text="Load More"
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+        </ListView.Footer>
+    </ListView>
+
+
+    <!--<ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Coffee">
+                <ImageCell
+                    Text="{Binding Name}"
+                    Detail="{Binding Roaster}"
+                    ImageSource="{Binding Image}"
+                    />
+            </DataTemplate>
+        </ListView.ItemTemplate>-->
+
+    
 </ContentPage>

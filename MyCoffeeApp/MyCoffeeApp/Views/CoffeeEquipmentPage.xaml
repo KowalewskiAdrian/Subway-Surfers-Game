@@ -6,28 +6,29 @@
     xmlns:viewModels="clr-namespace:MyCoffeeApp.ViewModels;assembly=MyCoffeeApp"
     xmlns:models="clr-namespace:MyCoffeeApp.Models;assembly=MyCoffeeApp"
     xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+    xmlns:viewmodels="clr-namespace:MyCoffeeApp.ViewModels;assembly=MyCoffeeApp"
     x:DataType="viewModels:CoffeeEquipmentViewModel"
+    x:Name="CoffeePage"
     Background="White">
 
     <!--Compiler Binding-->
     <ContentPage.BindingContext>
         <viewModels:CoffeeEquipmentViewModel/>
     </ContentPage.BindingContext>
-
+    
     <ListView
-        ItemTapped="ListView_OnItemTapped"
-        ItemSelected="ListView_OnItemSelected"
-        CachingStrategy="RecycleElement"
-        BackgroundColor="Transparent"
-        ItemsSource="{Binding CoffeeGroups}"
-        IsGroupingEnabled="True"
-        GroupDisplayBinding="{Binding Key}"
-        IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-        RefreshCommand="{Binding RefreshCommand}"
-        RefreshControlColor="Brown"
-        HasUnevenRows="True"
-        SeparatorVisibility="None">
+                                     BackgroundColor="Transparent"
+                                     CachingStrategy="RecycleElement"
+                                     GroupDisplayBinding="{Binding Key}"
+                                     HasUnevenRows="True"
+                                     IsGroupingEnabled="True"
+                                     IsPullToRefreshEnabled="True"
+                                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                     ItemsSource="{Binding CoffeeGroups}"
+                                     RefreshCommand="{Binding RefreshCommand}"
+                                     RefreshControlColor="Red"
+                                     SelectedItem="{Binding SelectedCoffee, Mode=TwoWay}"
+                                     SeparatorVisibility="None">
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="models:Coffee">
@@ -35,16 +36,16 @@
                     <ViewCell.ContextActions>
                         <MenuItem 
                             Text="Favorite"
-                            Clicked="FavoriteItem_OnClicked"/>
+                            Command="{Binding Source={x:Reference CoffeePage}, Path=BindingContext.FavoriteCommand}"
+                            CommandParameter="{Binding .}" />
                         <MenuItem Text="Delete" IsDestructive="True"/>
                     </ViewCell.ContextActions>
                     <Grid Padding="10">
-                        <Frame CornerRadius="20"
-                               HasShadow="True"/>
+                        <Frame CornerRadius="20" HasShadow="True" />
                         <StackLayout Orientation="Horizontal">
                             <Image 
-                                    Source="{Binding Image}"
-                                    WidthRequest="66"/>
+                                Source="{Binding Image}"
+                                WidthRequest="66"/>
 
                             <StackLayout>
                                 <Label
@@ -64,22 +65,19 @@
         </ListView.ItemTemplate>
         <ListView.Header>
             <StackLayout Orientation="Horizontal">
-                <Label 
-                    Text="Coffees of the World"/>
+                <Label Text="Coffees of the World" HorizontalOptions="Center"/>
             </StackLayout>
         </ListView.Header>
 
         <ListView.Footer>
             <StackLayout Orientation="Horizontal">
-                <Label 
-                    Text="daltonlima.com"/>
                 <Button 
+                    Command="{Binding LoadMoreCommand}"
                     Text="Load More"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center" />
             </StackLayout>
         </ListView.Footer>
     </ListView>
-
 
     <!--<ListView.ItemTemplate>
             <DataTemplate x:DataType="models:Coffee">

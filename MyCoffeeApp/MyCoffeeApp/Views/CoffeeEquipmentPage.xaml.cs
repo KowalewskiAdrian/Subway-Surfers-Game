@@ -19,29 +19,29 @@ namespace MyCoffeeApp.Views
             InitializeComponent();
 
             // we can bind the respective ViewModel here or in the XAML file
-            BindingContext = new CoffeeEquipmentViewModel();
+            //BindingContext = new CoffeeEquipmentViewModel();
         }
 
-        private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Console.WriteLine($"ListView_OnItemTapped {sender.ToString()} {sender.GetType()}");
-            ((ListView) sender).SelectedItem = null;
-        }
+        //private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    Console.WriteLine($"ListView_OnItemTapped {sender.ToString()} {sender.GetType()}");
+        //    ((ListView) sender).SelectedItem = null;
+        //}
 
-        private async void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            Console.WriteLine($"ListView_OnItemSelected {sender.ToString()} {sender.GetType()}");
-            var coffee = ((ListView) sender).SelectedItem as Coffee;
-            if (coffee == null) return;
-            await DisplayAlert("Coffee Selected", coffee.Name, "OK");
-        }
+        //private async void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    Console.WriteLine($"ListView_OnItemSelected {sender.ToString()} {sender.GetType()}");
+        //    var coffee = ((ListView) sender).SelectedItem as Coffee;
+        //    if (coffee == null) return;
+        //    await DisplayAlert("Coffee Selected", coffee.Name, "OK");
+        //}
         
-        private async void FavoriteItem_OnClicked(object sender, EventArgs e)
-        {
-            Console.WriteLine("FavoriteItem_OnClicked");
-            var coffee = ((MenuItem) sender).BindingContext as Coffee;
-            if (coffee == null) return;
-            await DisplayAlert("Coffee Favorited", coffee.Name, "OK");
-        }
+        //private async void FavoriteItem_OnClicked(object sender, EventArgs e)
+        //{
+        //    Console.WriteLine("FavoriteItem_OnClicked");
+        //    var coffee = ((MenuItem) sender).BindingContext as Coffee;
+        //    if (coffee == null) return;
+        //    await DisplayAlert("Coffee Favorited", coffee.Name, "OK");
+        //}
     }
 }

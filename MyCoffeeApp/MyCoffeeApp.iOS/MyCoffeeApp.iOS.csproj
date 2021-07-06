@@ -136,6 +136,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MonkeyCache.FileStore">
+      <Version>1.5.2</Version>
+    </PackageReference>
     <PackageReference Include="Refractored.MvvmHelpers">
       <Version>1.6.2</Version>
     </PackageReference>
@@ -150,6 +153,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\MyCoffeeApp.Shared\MyCoffeeApp.Shared.csproj">
+      <Project>{5e397239-873b-45ba-be79-9cfff9930841}</Project>
+      <Name>MyCoffeeApp.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyCoffeeApp\MyCoffeeApp.csproj">
       <Project>{CC1EC2F4-C17E-44B2-8B89-360351E19FA6}</Project>
       <Name>MyCoffeeApp</Name>

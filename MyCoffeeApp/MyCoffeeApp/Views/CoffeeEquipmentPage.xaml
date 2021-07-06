@@ -4,10 +4,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MyCoffeeApp.ViewModels;assembly=MyCoffeeApp"
-    xmlns:models="clr-namespace:MyCoffeeApp.Models;assembly=MyCoffeeApp"
     xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
     xmlns:viewmodels="clr-namespace:MyCoffeeApp.ViewModels;assembly=MyCoffeeApp"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:models="clr-namespace:MyCoffeeApp.Shared.Models;assembly=MyCoffeeApp.Shared"
     x:DataType="viewModels:CoffeeEquipmentViewModel"
     x:Name="CoffeePage"
     Background="White">

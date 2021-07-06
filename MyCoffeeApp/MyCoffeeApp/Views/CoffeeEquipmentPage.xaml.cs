@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MyCoffeeApp.Models;
+using MyCoffeeApp.Shared.Models;
 using MyCoffeeApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

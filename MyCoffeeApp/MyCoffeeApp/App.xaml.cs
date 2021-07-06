@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using MonkeyCache.FileStore;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MyCoffeeApp
@@ -11,6 +13,7 @@ namespace MyCoffeeApp
         {
             InitializeComponent();
 
+            Barrel.ApplicationId = AppInfo.PackageName;
             //DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }

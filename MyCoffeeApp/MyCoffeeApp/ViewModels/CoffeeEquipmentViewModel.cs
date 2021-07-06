@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
-using MyCoffeeApp.Models;
-using Xamarin.Forms;
+ using MyCoffeeApp.Shared.Models;
+ using Xamarin.Forms;
 using Command = MvvmHelpers.Commands.Command;
 
 namespace MyCoffeeApp.ViewModels

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using MvvmHelpers;
+﻿using MvvmHelpers;
 using MvvmHelpers.Commands;
-using MyCoffeeApp.Shared.Models;
 using MyCoffeeApp.Services;
+using MyCoffeeApp.Shared.Models;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using Command = MvvmHelpers.Commands.Command;
 
 namespace MyCoffeeApp.ViewModels
 {
-    public class MyCoffeeViewModel : ViewModelBase
+    public class InternetCoffeeViewModel : ViewModelBase
     {
         public ObservableRangeCollection<Coffee> Coffee { get; set; }
         public AsyncCommand RefreshCommand { get; }
@@ -22,39 +17,45 @@ namespace MyCoffeeApp.ViewModels
         public AsyncCommand<Coffee> RemoveCommand { get; }
 
 
-        public MyCoffeeViewModel()
+        public InternetCoffeeViewModel()
         {
-            Title = "My Coffee";
+
+            Title = "Internet Coffee";
+
             Coffee = new ObservableRangeCollection<Coffee>();
+
 
             RefreshCommand = new AsyncCommand(Refresh);
             AddCommand = new AsyncCommand(Add);
             RemoveCommand = new AsyncCommand<Coffee>(Remove);
         }
 
-        private async Task Add()
+        async Task Add()
         {
             var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name of coffee");
             var roaster = await App.Current.MainPage.DisplayPromptAsync("Roaster", "Roaster of coffee");
-            await CoffeeService.AddCoffee(name, roaster);
+            await InternetCoffeeService.AddCoffee(name, roaster);
             await Refresh();
         }
 
-        private async Task Remove(Coffee coffee)
+        async Task Remove(Coffee coffee)
         {
-            await CoffeeService.RemoveCoffee(coffee.Id);
+            await InternetCoffeeService.RemoveCoffee(coffee.Id);
             await Refresh();
         }
 
-        private async Task Refresh()
+        async Task Refresh()
         {
             IsBusy = true;
 
             await Task.Delay(2000);
+
             Coffee.Clear();
-            var coffees = await CoffeeService.GetCoffee();
+
+            var coffees = await InternetCoffeeService.GetCoffee();
 
             Coffee.AddRange(coffees);
+
             IsBusy = false;
         }
     }

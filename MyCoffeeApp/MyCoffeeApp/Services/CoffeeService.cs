@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using MyCoffeeApp.Annotations;
-using MyCoffeeApp.Models;
+using MyCoffeeApp.Shared.Models;
 using Xamarin.Essentials;
 
 namespace MyCoffeeApp.Services

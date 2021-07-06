@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace MyCoffeeApp.Models
+namespace MyCoffeeApp.Shared.Models
 {
     public class Coffee
     {

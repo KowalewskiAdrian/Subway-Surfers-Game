@@ -16,6 +16,6 @@ Unity 2023
 
  
 # Screenshots
-![image](https://github.com/kenjitakuma777/Bus-Subway-Surfers/blob/master/Assets/Board/1.webp)
-![image](https://github.com/kenjitakuma777/Bus-Subway-Surfers/blob/master/Assets/Board/2.webp)
+![image](https://github.com/kowalewskiadrian/Bus-Subway-Surfers/blob/main/Assets/Board/1.webp)
+![image](https://github.com/kowalewskiadrian/Bus-Subway-Surfers/blob/main/Assets/Board/2.webp)
 
